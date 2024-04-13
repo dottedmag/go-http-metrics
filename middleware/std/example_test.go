@@ -4,11 +4,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	//	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	metrics "github.com/slok/go-http-metrics/metrics/prometheus"
-	"github.com/slok/go-http-metrics/middleware"
-	stdmiddleware "github.com/slok/go-http-metrics/middleware/std"
+	"github.com/dottedmag/go-http-metrics/middleware"
+	stdmiddleware "github.com/dottedmag/go-http-metrics/middleware/std"
 )
 
 // NegroniMiddleware shows how you would create a default middleware factory and use it
@@ -16,7 +15,7 @@ import (
 func Example_stdMiddleware() {
 	// Create our middleware factory with the default settings.
 	mdlw := middleware.New(middleware.Config{
-		Recorder: metrics.NewRecorder(metrics.Config{}),
+		//Recorder: metrics.NewRecorder(metrics.Config{}),
 	})
 
 	// Create our handler.
@@ -31,7 +30,7 @@ func Example_stdMiddleware() {
 	// Serve metrics from the default prometheus registry.
 	log.Printf("serving metrics at: %s", ":8081")
 	go func() {
-		_ = http.ListenAndServe(":8081", promhttp.Handler())
+		//		_ = http.ListenAndServe(":8081", promhttp.Handler())
 	}()
 
 	// Serve our handler.

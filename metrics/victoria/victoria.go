@@ -19,7 +19,11 @@ type recorder struct {
 }
 
 func NewRecorder(cfg Config) metrics.Recorder {
-	return &recorder{set: cfg.set}
+	set := cfg.set
+	if set == nil {
+		set = victoriametrics.GetDefaultSet()
+	}
+	return &recorder{set: set}
 }
 
 func name(s string, kv ...string) string {
